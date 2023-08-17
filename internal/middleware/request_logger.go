@@ -20,9 +20,11 @@ func (mw *MiddlewareManager) RequestLoggerMiddleware(next echo.HandlerFunc) echo
 		size := res.Size
 		s := time.Since(start).String()
 		requestID := utils.GetRequestID(ctx)
+		clientIP := ctx.RealIP()
+		browser := req.UserAgent()
 
-		mw.logger.Infof("RequestID: %s, Method: %s, URI: %s, Status: %v, Size: %v, Time: %s",
-			requestID, req.Method, req.URL, status, size, s,
+		mw.logger.Infof("RequestID: %s, Method: %s, URI: %s, Status: %v, Size: %v, Time: %s, ClientIP: %s, Browser: %s",
+			requestID, req.Method, req.URL, status, size, s, clientIP, browser,
 		)
 		return err
 	}
