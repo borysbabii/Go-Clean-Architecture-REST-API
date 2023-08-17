@@ -18,7 +18,7 @@ type News struct {
 	UpdatedAt time.Time `json:"updated_at,omitempty" db:"updated_at"`
 }
 
-// All News response
+// NewsList All News response
 type NewsList struct {
 	TotalCount int     `json:"total_count"`
 	TotalPages int     `json:"total_pages"`
@@ -28,7 +28,7 @@ type NewsList struct {
 	News       []*News `json:"news"`
 }
 
-// News base
+// NewsBase News base
 type NewsBase struct {
 	NewsID    uuid.UUID `json:"news_id" db:"news_id" validate:"omitempty,uuid"`
 	AuthorID  uuid.UUID `json:"author_id" db:"author_id" validate:"omitempty,uuid"`

@@ -30,7 +30,7 @@ type User struct {
 	LoginDate   time.Time  `json:"login_date" db:"login_date" redis:"login_date"`
 }
 
-// Hash user password with bcrypt
+// HashPassword Hash user password with bcrypt
 func (u *User) HashPassword() error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -40,7 +40,7 @@ func (u *User) HashPassword() error {
 	return nil
 }
 
-// Compare user password and payload
+// ComparePasswords Compare user password and payload
 func (u *User) ComparePasswords(password string) error {
 	if err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password)); err != nil {
 		return err
@@ -48,12 +48,12 @@ func (u *User) ComparePasswords(password string) error {
 	return nil
 }
 
-// Sanitize user password
+// SanitizePassword Sanitize user password
 func (u *User) SanitizePassword() {
 	u.Password = ""
 }
 
-// Prepare user for register
+// PrepareCreate Prepare user for register
 func (u *User) PrepareCreate() error {
 	u.Email = strings.ToLower(strings.TrimSpace(u.Email))
 	u.Password = strings.TrimSpace(u.Password)
@@ -71,7 +71,7 @@ func (u *User) PrepareCreate() error {
 	return nil
 }
 
-// Prepare user for register
+// PrepareUpdate Prepare user for register
 func (u *User) PrepareUpdate() error {
 	u.Email = strings.ToLower(strings.TrimSpace(u.Email))
 
@@ -84,7 +84,7 @@ func (u *User) PrepareUpdate() error {
 	return nil
 }
 
-// All Users response
+// UsersList All Users response
 type UsersList struct {
 	TotalCount int     `json:"total_count"`
 	TotalPages int     `json:"total_pages"`
@@ -94,7 +94,7 @@ type UsersList struct {
 	Users      []*User `json:"users"`
 }
 
-// Find user query
+// UserWithToken Find user query
 type UserWithToken struct {
 	User  *User  `json:"user"`
 	Token string `json:"token"`
