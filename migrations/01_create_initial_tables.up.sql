@@ -1,5 +1,12 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS news CASCADE;
+DROP TABLE IF EXISTS comments CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS budgets CASCADE;
+DROP TABLE IF EXISTS goals CASCADE;
+DROP TABLE IF EXISTS currencies CASCADE;
+DROP TABLE IF EXISTS transactions CASCADE;
+DROP TABLE IF EXISTS accounts CASCADE;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS CITEXT;
@@ -26,6 +33,7 @@ CREATE TABLE users
     birthday     DATE                                 DEFAULT NULL,
     created_at   TIMESTAMP WITH TIME ZONE    NOT NULL DEFAULT NOW(),
     updated_at   TIMESTAMP WITH TIME ZONE             DEFAULT CURRENT_TIMESTAMP,
+    deleted_at   TIMESTAMP WITH TIME ZONE             DEFAULT NULL,
     login_date   TIMESTAMP(0) WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,7 +48,8 @@ CREATE TABLE news
     image_url  VARCHAR(1024) check ( image_url <> '' ),
     category   VARCHAR(250),
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMP WITH TIME ZONE          DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP WITH TIME ZONE          DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP WITH TIME ZONE          DEFAULT NULL
 );
 
 CREATE TABLE comments
@@ -51,7 +60,71 @@ CREATE TABLE comments
     message    VARCHAR(1024)                                      NOT NULL CHECK ( message <> '' ),
     likes      BIGINT                   DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP WITH TIME ZONE DEFAULT NULL
 );
 
 CREATE INDEX IF NOT EXISTS news_title_id_idx ON news (title);
+
+CREATE TABLE currencies
+(
+    currency_id UUID PRIMARY KEY      DEFAULT uuid_generate_v4(),
+    name        VARCHAR(250) NOT NULL CHECK ( name <> '' ),
+    code        VARCHAR(3)   NOT NULL CHECK ( code <> '' ),
+    symbol      VARCHAR(3)   NOT NULL CHECK ( symbol <> '' ),
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP             DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE accounts
+(
+    account_id      UUID PRIMARY KEY        DEFAULT uuid_generate_v4(),
+    user_id         UUID           NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    currency_id     UUID           NOT NULL REFERENCES currencies (currency_id) ON DELETE CASCADE,
+    name            VARCHAR(250)   NOT NULL CHECK ( name <> '' ),
+    current_balance NUMERIC(10, 2) NOT NULL,
+    created_at      TIMESTAMP      NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMP               DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE categories
+(
+    category_id UUID PRIMARY KEY      DEFAULT uuid_generate_v4(),
+    user_id     UUID         NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    parent_id   UUID         NOT NULL REFERENCES categories (category_id) ON DELETE CASCADE,
+    name        VARCHAR(250) NOT NULL CHECK ( name <> '' ),
+    created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP             DEFAULT CURRENT_TIMESTAMP,
+    deleted_at  TIMESTAMP             DEFAULT NULL
+);
+
+CREATE TABLE budgets
+(
+    budget_id   UUID PRIMARY KEY        DEFAULT uuid_generate_v4(),
+    user_id     UUID           NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    category_id UUID           NOT NULL REFERENCES categories (category_id) ON DELETE CASCADE,
+    amount      NUMERIC(10, 2) NOT NULL,
+    created_at  TIMESTAMP      NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP               DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE goals
+(
+    goal_id    UUID PRIMARY KEY        DEFAULT uuid_generate_v4(),
+    user_id    UUID           NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    name       VARCHAR(250)   NOT NULL CHECK ( name <> '' ),
+    amount     NUMERIC(10, 2) NOT NULL,
+    created_at TIMESTAMP      NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP               DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE transactions
+(
+    transaction_id UUID PRIMARY KEY        DEFAULT uuid_generate_v4(),
+    user_id        UUID           NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    account_id     UUID           NOT NULL REFERENCES accounts (account_id) ON DELETE CASCADE,
+    amount         NUMERIC(10, 2) NOT NULL,
+    currency_id    UUID           NOT NULL REFERENCES currencies (currency_id) ON DELETE CASCADE,
+    created_at     TIMESTAMP      NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMP               DEFAULT CURRENT_TIMESTAMP
+);
