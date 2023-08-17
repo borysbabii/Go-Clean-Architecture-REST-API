@@ -1,14 +1,14 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Example Golang REST API",
-        "title": "Go Example REST API",
+        "description": "Personal Accounting Application",
+        "title": "BudgetWhiz",
         "contact": {
-            "name": "Alexander Bryksin",
-            "url": "https://github.com/AleksK1NG",
-            "email": "alexander.bryksin@yandex.ru"
+            "name": "Borys Babii",
+            "url": "https://github.com/borysbabii",
+            "email": "angelus169@gmail.com"
         },
-        "version": "1.0"
+        "version": "1.0.0"
     },
     "basePath": "/api/v1",
     "paths": {

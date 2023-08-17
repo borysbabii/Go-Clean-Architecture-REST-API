@@ -226,12 +226,12 @@ definitions:
     type: object
 info:
   contact:
-    email: alexander.bryksin@yandex.ru
-    name: Alexander Bryksin
-    url: https://github.com/AleksK1NG
-  description: Example Golang REST API
-  title: Go Example REST API
-  version: "1.0"
+    email: angelus169@gmail.com
+    name: Borys Babii
+    url: https://github.com/borysbabii
+  description: Personal Accounting Application
+  title: BudgetWhiz
+  version: 1.0.0
 paths:
   /auth/{id}:
     delete:

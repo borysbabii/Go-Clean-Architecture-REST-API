@@ -11,9 +11,9 @@ const docTemplate = `{
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
         "contact": {
-            "name": "Alexander Bryksin",
-            "url": "https://github.com/AleksK1NG",
-            "email": "alexander.bryksin@yandex.ru"
+            "name": "Borys Babii",
+            "url": "https://github.com/borysbabii",
+            "email": "angelus169@gmail.com"
         },
         "version": "{{.Version}}"
     },
@@ -1167,12 +1167,12 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.0",
+	Version:          "1.0.0",
 	Host:             "",
 	BasePath:         "/api/v1",
 	Schemes:          []string{},
-	Title:            "Go Example REST API",
-	Description:      "Example Golang REST API",
+	Title:            "BudgetWhiz",
+	Description:      "Personal Accounting Application",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",
