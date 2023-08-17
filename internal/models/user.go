@@ -28,6 +28,7 @@ type User struct {
 	CreatedAt   time.Time  `json:"created_at,omitempty" db:"created_at" redis:"created_at"`
 	UpdatedAt   time.Time  `json:"updated_at,omitempty" db:"updated_at" redis:"updated_at"`
 	LoginDate   time.Time  `json:"login_date" db:"login_date" redis:"login_date"`
+	DeletedAt   *time.Time `json:"deleted_at,omitempty" db:"deleted_at" redis:"deleted_at"`
 }
 
 // HashPassword Hash user password with bcrypt

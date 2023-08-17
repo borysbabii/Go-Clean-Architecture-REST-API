@@ -24,33 +24,34 @@ const (
 						RETURNING *
 						`
 
-	deleteUserQuery = `DELETE FROM users WHERE user_id = $1`
+	deleteUserQuery = `UPDATE users SET deleted_at = now() WHERE user_id = $1`
 
 	getUserQuery = `SELECT user_id, first_name, last_name, email, role, about, avatar, phone_number, 
-       				 address, city, gender, postcode, birthday, created_at, updated_at, login_date  
+       				 address, city, gender, postcode, birthday, created_at, updated_at, login_date, deleted_at  
 					 FROM users 
-					 WHERE user_id = $1`
+					 WHERE user_id = $1 and deleted_at is null`
 
 	getTotalCount = `SELECT COUNT(user_id) FROM users 
 						WHERE first_name ILIKE '%' || $1 || '%' or last_name ILIKE '%' || $1 || '%'`
 
 	findUsers = `SELECT user_id, first_name, last_name, email, role, about, avatar, phone_number, address,
-	              city, gender, postcode, birthday, created_at, updated_at, login_date 
+	              city, gender, postcode, birthday, created_at, updated_at, login_date, deleted_at 
 				  FROM users 
-				  WHERE first_name ILIKE '%' || $1 || '%' or last_name ILIKE '%' || $1 || '%'
+				  WHERE first_name ILIKE '%' || $1 || '%' or last_name ILIKE '%' || $1 || '%' and deleted_at is null
 				  ORDER BY first_name, last_name
 				  OFFSET $2 LIMIT $3
 				  `
 
-	getTotal = `SELECT COUNT(user_id) FROM users`
+	getTotal = `SELECT COUNT(user_id) FROM users WHERE deleted_at is null`
 
 	getUsers = `SELECT user_id, first_name, last_name, email, role, about, avatar, phone_number, 
-       			 address, city, gender, postcode, birthday, created_at, updated_at, login_date
+       			 address, city, gender, postcode, birthday, created_at, updated_at, login_date, deleted_at
 				 FROM users 
+				 WHERE deleted_at is null
 				 ORDER BY COALESCE(NULLIF($1, ''), first_name) OFFSET $2 LIMIT $3`
 
 	findUserByEmail = `SELECT user_id, first_name, last_name, email, role, about, avatar, phone_number, 
        			 		address, city, gender, postcode, birthday, created_at, updated_at, login_date, password
 				 		FROM users 
-				 		WHERE email = $1`
+				 		WHERE email = $1 and deleted_at is null`
 )

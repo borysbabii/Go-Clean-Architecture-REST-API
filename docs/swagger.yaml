@@ -173,6 +173,8 @@ definitions:
         type: string
       created_at:
         type: string
+      deleted_at:
+        type: string
       email:
         maxLength: 60
         type: string
