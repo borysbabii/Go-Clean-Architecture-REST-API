@@ -1,7 +1,7 @@
-FROM golang:1.16
+FROM golang:1.20.5
 
-RUN go get github.com/githubnemo/CompileDaemon && \
-  go get github.com/go-delve/delve/cmd/dlv
+RUN go install github.com/githubnemo/CompileDaemon@latest && \
+  go install github.com/go-delve/delve/cmd/dlv@latest
 WORKDIR /app
 
 ENV config=docker

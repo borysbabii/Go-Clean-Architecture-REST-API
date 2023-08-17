@@ -1,5 +1,5 @@
 # Initial stage: download modules
-FROM golang:1.16-alpine as builder
+FROM golang:1.20.5-alpine as builder
 
 ENV config=docker
 
@@ -11,11 +11,11 @@ RUN go mod download
 
 
 # Intermediate stage: Build the binary
-FROM golang:1.16-alpine as runner
+FROM golang:1.20.5-alpine as runner
 
 COPY --from=builder ./app ./app
 
-RUN go get github.com/githubnemo/CompileDaemon
+RUN go install github.com/githubnemo/CompileDaemon@latest
 
 WORKDIR /app
 ENV config=docker
