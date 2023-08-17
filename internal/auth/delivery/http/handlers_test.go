@@ -6,19 +6,19 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/opentracing/opentracing-go"
 	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 
-	"github.com/AleksK1NG/api-mc/config"
-	"github.com/AleksK1NG/api-mc/internal/auth/mock"
-	"github.com/AleksK1NG/api-mc/internal/models"
-	mockSess "github.com/AleksK1NG/api-mc/internal/session/mock"
-	"github.com/AleksK1NG/api-mc/pkg/converter"
-	"github.com/AleksK1NG/api-mc/pkg/logger"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/config"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/auth/mock"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	mockSess "github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/session/mock"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/converter"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/logger"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 func TestAuthHandlers_Register(t *testing.T) {

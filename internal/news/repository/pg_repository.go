@@ -9,9 +9,9 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/pkg/errors"
 
-	"github.com/AleksK1NG/api-mc/internal/models"
-	"github.com/AleksK1NG/api-mc/internal/news"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/news"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 // News Repository

@@ -6,35 +6,50 @@ package mock
 
 import (
 	context "context"
-	models "github.com/AleksK1NG/api-mc/internal/models"
-	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
+
+	models "github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	gomock "go.uber.org/mock/gomock"
 )
 
-// MockRedisRepository is a mock of RedisRepository interface
+// MockRedisRepository is a mock of RedisRepository interface.
 type MockRedisRepository struct {
 	ctrl     *gomock.Controller
 	recorder *MockRedisRepositoryMockRecorder
 }
 
-// MockRedisRepositoryMockRecorder is the mock recorder for MockRedisRepository
+// MockRedisRepositoryMockRecorder is the mock recorder for MockRedisRepository.
 type MockRedisRepositoryMockRecorder struct {
 	mock *MockRedisRepository
 }
 
-// NewMockRedisRepository creates a new mock instance
+// NewMockRedisRepository creates a new mock instance.
 func NewMockRedisRepository(ctrl *gomock.Controller) *MockRedisRepository {
 	mock := &MockRedisRepository{ctrl: ctrl}
 	mock.recorder = &MockRedisRepositoryMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockRedisRepository) EXPECT() *MockRedisRepositoryMockRecorder {
 	return m.recorder
 }
 
-// GetByIDCtx mocks base method
+// DeleteUserCtx mocks base method.
+func (m *MockRedisRepository) DeleteUserCtx(ctx context.Context, key string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DeleteUserCtx", ctx, key)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DeleteUserCtx indicates an expected call of DeleteUserCtx.
+func (mr *MockRedisRepositoryMockRecorder) DeleteUserCtx(ctx, key interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteUserCtx", reflect.TypeOf((*MockRedisRepository)(nil).DeleteUserCtx), ctx, key)
+}
+
+// GetByIDCtx mocks base method.
 func (m *MockRedisRepository) GetByIDCtx(ctx context.Context, key string) (*models.User, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetByIDCtx", ctx, key)
@@ -43,13 +58,13 @@ func (m *MockRedisRepository) GetByIDCtx(ctx context.Context, key string) (*mode
 	return ret0, ret1
 }
 
-// GetByIDCtx indicates an expected call of GetByIDCtx
+// GetByIDCtx indicates an expected call of GetByIDCtx.
 func (mr *MockRedisRepositoryMockRecorder) GetByIDCtx(ctx, key interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByIDCtx", reflect.TypeOf((*MockRedisRepository)(nil).GetByIDCtx), ctx, key)
 }
 
-// SetUserCtx mocks base method
+// SetUserCtx mocks base method.
 func (m *MockRedisRepository) SetUserCtx(ctx context.Context, key string, seconds int, user *models.User) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SetUserCtx", ctx, key, seconds, user)
@@ -57,22 +72,8 @@ func (m *MockRedisRepository) SetUserCtx(ctx context.Context, key string, second
 	return ret0
 }
 
-// SetUserCtx indicates an expected call of SetUserCtx
+// SetUserCtx indicates an expected call of SetUserCtx.
 func (mr *MockRedisRepositoryMockRecorder) SetUserCtx(ctx, key, seconds, user interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetUserCtx", reflect.TypeOf((*MockRedisRepository)(nil).SetUserCtx), ctx, key, seconds, user)
-}
-
-// DeleteUserCtx mocks base method
-func (m *MockRedisRepository) DeleteUserCtx(ctx context.Context, key string) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "DeleteUserCtx", ctx, key)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// DeleteUserCtx indicates an expected call of DeleteUserCtx
-func (mr *MockRedisRepositoryMockRecorder) DeleteUserCtx(ctx, key interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DeleteUserCtx", reflect.TypeOf((*MockRedisRepository)(nil).DeleteUserCtx), ctx, key)
 }

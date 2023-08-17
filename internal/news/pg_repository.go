@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/AleksK1NG/api-mc/internal/models"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 // News Repository

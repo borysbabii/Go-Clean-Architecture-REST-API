@@ -23,5 +23,5 @@ type CurrenciesList struct {
 	Page       int         `json:"page"`
 	Size       int         `json:"size"`
 	HasMore    bool        `json:"has_more"`
-	Categories []*Currency `json:"currencies"`
+	Currencies []*Currency `json:"currencies"`
 }

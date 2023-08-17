@@ -8,12 +8,12 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/pkg/errors"
 
-	"github.com/AleksK1NG/api-mc/config"
-	"github.com/AleksK1NG/api-mc/internal/comments"
-	"github.com/AleksK1NG/api-mc/internal/models"
-	"github.com/AleksK1NG/api-mc/pkg/httpErrors"
-	"github.com/AleksK1NG/api-mc/pkg/logger"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/config"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/comments"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/httpErrors"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/logger"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 // Comments UseCase

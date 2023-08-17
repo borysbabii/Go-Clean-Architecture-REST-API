@@ -9,8 +9,8 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 
-	"github.com/AleksK1NG/api-mc/config"
-	"github.com/AleksK1NG/api-mc/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/config"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
 )
 
 // JWT Claims struct

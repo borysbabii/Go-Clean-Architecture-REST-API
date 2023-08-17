@@ -4,15 +4,15 @@ import (
 	"context"
 	"testing"
 
-	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/opentracing/opentracing-go"
 	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 
-	"github.com/AleksK1NG/api-mc/internal/comments/mock"
-	"github.com/AleksK1NG/api-mc/internal/models"
-	"github.com/AleksK1NG/api-mc/pkg/logger"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/comments/mock"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/logger"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 func TestCommentsUC_Create(t *testing.T) {

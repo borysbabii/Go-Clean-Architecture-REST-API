@@ -9,8 +9,8 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/pkg/errors"
 
-	"github.com/AleksK1NG/api-mc/internal/auth"
-	"github.com/AleksK1NG/api-mc/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/auth"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
 )
 
 // Auth redis repository

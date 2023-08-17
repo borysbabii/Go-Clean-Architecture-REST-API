@@ -12,11 +12,11 @@ import (
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
 
-	"github.com/AleksK1NG/api-mc/config"
-	"github.com/AleksK1NG/api-mc/internal/auth"
-	"github.com/AleksK1NG/api-mc/internal/models"
-	"github.com/AleksK1NG/api-mc/pkg/httpErrors"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/config"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/auth"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/httpErrors"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 // Auth sessions middleware using redis

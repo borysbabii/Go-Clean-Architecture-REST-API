@@ -14,9 +14,9 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/minio/minio-go/v7"
 
-	"github.com/AleksK1NG/api-mc/config"
-	_ "github.com/AleksK1NG/api-mc/docs"
-	"github.com/AleksK1NG/api-mc/pkg/logger"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/config"
+	_ "github.com/borysbabii/Go-Clean-Architecture-REST-API/docs"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/logger"
 )
 
 const (

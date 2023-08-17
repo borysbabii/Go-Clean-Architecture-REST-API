@@ -1,7 +1,5 @@
 basePath: /api/v1
 definitions:
-  httpErrors.RestErr:
-    type: object
   httpErrors.RestError:
     properties:
       error:
@@ -20,6 +18,7 @@ definitions:
       likes:
         type: integer
       message:
+        minLength: 10
         type: string
       news_id:
         type: string
@@ -43,6 +42,7 @@ definitions:
       likes:
         type: integer
       message:
+        minLength: 10
         type: string
       updated_at:
         type: string
@@ -68,21 +68,64 @@ definitions:
       total_pages:
         type: integer
     type: object
+  models.CurrenciesList:
+    properties:
+      currencies:
+        items:
+          $ref: '#/definitions/models.Currency'
+        type: array
+      has_more:
+        type: boolean
+      page:
+        type: integer
+      size:
+        type: integer
+      total_count:
+        type: integer
+      total_pages:
+        type: integer
+    type: object
+  models.Currency:
+    properties:
+      category_id:
+        type: string
+      code:
+        minLength: 2
+        type: string
+      created_at:
+        type: string
+      name:
+        minLength: 2
+        type: string
+      symbol:
+        minLength: 2
+        type: string
+      updated_at:
+        type: string
+    required:
+    - code
+    - name
+    - symbol
+    type: object
   models.News:
     properties:
       author_id:
         type: string
       category:
+        maxLength: 10
         type: string
       content:
+        minLength: 20
         type: string
       created_at:
         type: string
       image_url:
+        maxLength: 512
         type: string
       news_id:
         type: string
       title:
+        minLength: 10
         type: string
       updated_at:
         type: string
@@ -111,36 +154,49 @@ definitions:
   models.User:
     properties:
       about:
+        maxLength: 1024
         type: string
       address:
+        maxLength: 250
         type: string
       avatar:
+        maxLength: 512
         type: string
       birthday:
+        maxLength: 10
         type: string
       city:
+        maxLength: 24
         type: string
       country:
+        maxLength: 24
         type: string
       created_at:
         type: string
       email:
+        maxLength: 60
         type: string
       first_name:
+        maxLength: 30
         type: string
       gender:
+        maxLength: 10
         type: string
       last_name:
+        maxLength: 30
         type: string
       login_date:
         type: string
       password:
+        minLength: 6
         type: string
       phone_number:
+        maxLength: 20
         type: string
       postcode:
         type: integer
       role:
+        maxLength: 10
         type: string
       updated_at:
         type: string
@@ -439,8 +495,7 @@ paths:
             $ref: '#/definitions/models.Comment'
         "500":
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/httpErrors.RestErr'
+          schema: {}
       summary: Create new comment
       tags:
       - Comments
@@ -464,8 +519,7 @@ paths:
             type: string
         "500":
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/httpErrors.RestErr'
+          schema: {}
       summary: Delete comment
       tags:
       - Comments
@@ -488,8 +542,7 @@ paths:
             $ref: '#/definitions/models.Comment'
         "500":
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/httpErrors.RestErr'
+          schema: {}
       summary: Get comment
       tags:
       - Comments
@@ -512,8 +565,7 @@ paths:
             $ref: '#/definitions/models.Comment'
         "500":
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/httpErrors.RestErr'
+          schema: {}
       summary: Update comment
       tags:
       - Comments
@@ -552,11 +604,41 @@ paths:
             $ref: '#/definitions/models.CommentsList'
         "500":
           description: Internal Server Error
-          schema:
-            $ref: '#/definitions/httpErrors.RestErr'
+          schema: {}
       summary: Get comments by news
       tags:
       - Comments
+  /currencies:
+    get:
+      consumes:
+      - application/json
+      description: get all currencies
+      parameters:
+      - description: page number
+        format: page
+        in: query
+        name: page
+        type: integer
+      - description: number of elements per page
+        format: size
+        in: query
+        name: size
+        type: integer
+      - description: filter name
+        format: orderBy
+        in: query
+        name: orderBy
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CurrenciesList'
+      summary: Get all currencies
+      tags:
+      - Currency
   /news:
     get:
       consumes:

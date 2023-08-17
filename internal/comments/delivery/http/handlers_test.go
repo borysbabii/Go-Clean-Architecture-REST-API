@@ -8,17 +8,17 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/golang/mock/gomock"
 	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/require"
+	"go.uber.org/mock/gomock"
 
-	"github.com/AleksK1NG/api-mc/internal/comments/mock"
-	"github.com/AleksK1NG/api-mc/internal/comments/usecase"
-	"github.com/AleksK1NG/api-mc/internal/models"
-	"github.com/AleksK1NG/api-mc/pkg/converter"
-	"github.com/AleksK1NG/api-mc/pkg/logger"
-	"github.com/AleksK1NG/api-mc/pkg/utils"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/comments/mock"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/comments/usecase"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/models"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/converter"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/logger"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/utils"
 )
 
 func TestCommentsHandlers_Create(t *testing.T) {

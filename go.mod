@@ -1,13 +1,12 @@
-module github.com/AleksK1NG/api-mc
+module github.com/borysbabii/Go-Clean-Architecture-REST-API
 
 go 1.20
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.0
-	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/alicebob/miniredis v2.5.0+incompatible
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/go-playground/validator/v10 v10.15.0
+	github.com/go-playground/validator/v10 v10.15.1
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang/mock v1.6.0
 	github.com/google/uuid v1.3.0
@@ -26,6 +25,7 @@ require (
 	github.com/swaggo/swag v1.16.1
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/uber/jaeger-lib v2.4.1+incompatible
+	go.uber.org/mock v0.2.0
 	go.uber.org/zap v1.25.0
 	golang.org/x/crypto v0.12.0
 )

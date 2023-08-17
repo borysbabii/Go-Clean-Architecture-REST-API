@@ -8,7 +8,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/AleksK1NG/api-mc/pkg/httpErrors"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/httpErrors"
 )
 
 var allowedImagesContentType = map[string]string{

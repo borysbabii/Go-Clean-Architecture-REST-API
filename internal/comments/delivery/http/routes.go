@@ -3,8 +3,8 @@ package http
 import (
 	"github.com/labstack/echo/v4"
 
-	"github.com/AleksK1NG/api-mc/internal/comments"
-	"github.com/AleksK1NG/api-mc/internal/middleware"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/comments"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/internal/middleware"
 )
 
 // Map comments routes

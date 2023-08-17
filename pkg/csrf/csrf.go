@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"io"
 
-	"github.com/AleksK1NG/api-mc/pkg/logger"
+	"github.com/borysbabii/Go-Clean-Architecture-REST-API/pkg/logger"
 )
 
 const (
